@@ -1,0 +1,191 @@
+{
+    "Technical Skills": [
+        {
+            "name": "Programming",
+            "description": "Writing computer code to create software applications",
+            "career_relevance": ["Software Developer", "Data Scientist", "Cybersecurity Analyst"]
+        },
+        {
+            "name": "Data Analysis",
+            "description": "Inspecting, cleaning, and modeling data to discover useful information",
+            "career_relevance": ["Data Scientist", "Financial Analyst", "Marketing Manager"]
+        },
+        {
+            "name": "CAD Design",
+            "description": "Creating technical designs using computer-aided design software",
+            "career_relevance": ["Civil Engineer", "Biomedical Engineer", "UX/UI Designer"]
+        },
+        {
+            "name": "Statistical Analysis",
+            "description": "Using statistical methods to interpret data and make predictions",
+            "career_relevance": ["Data Scientist", "Environmental Scientist", "Market Research Analyst"]
+        },
+        {
+            "name": "Machine Learning",
+            "description": "Developing algorithms that allow computers to learn from data",
+            "career_relevance": ["Data Scientist", "AI Engineer", "Research Scientist"]
+        }
+    ],
+    "Business Skills": [
+        {
+            "name": "Financial Modeling",
+            "description": "Building mathematical representations of business and financial scenarios",
+            "career_relevance": ["Financial Analyst", "Investment Banker", "Business Consultant"]
+        },
+        {
+            "name": "Project Management",
+            "description": "Planning, organizing, and overseeing projects to achieve specific goals",
+            "career_relevance": ["Civil Engineer", "Marketing Manager", "Software Developer"]
+        },
+        {
+            "name": "Digital Marketing",
+            "description": "Promoting products and services through digital channels",
+            "career_relevance": ["Marketing Manager", "Digital Strategist", "Content Creator"]
+        },
+        {
+            "name": "Strategic Planning",
+            "description": "Developing plans to achieve long-term organizational goals",
+            "career_relevance": ["Marketing Manager", "Business Analyst", "Executive"]
+        },
+        {
+            "name": "Business Analytics",
+            "description": "Using data analysis to inform business decisions",
+            "career_relevance": ["Financial Analyst", "Marketing Manager", "Business Consultant"]
+        }
+    ],
+    "Creative Skills": [
+        {
+            "name": "Design",
+            "description": "Creating visual solutions for communication and aesthetics",
+            "career_relevance": ["UX/UI Designer", "Graphic Designer", "Product Designer"]
+        },
+        {
+            "name": "Wireframing",
+            "description": "Creating basic layouts of digital interfaces",
+            "career_relevance": ["UX/UI Designer", "Web Developer", "Product Manager"]
+        },
+        {
+            "name": "Visual Communication",
+            "description": "Conveying ideas and information through visual elements",
+            "career_relevance": ["UX/UI Designer", "Marketing Manager", "Graphic Designer"]
+        },
+        {
+            "name": "Content Creation",
+            "description": "Developing text, images, or multimedia for various platforms",
+            "career_relevance": ["Marketing Manager", "Content Writer", "Social Media Manager"]
+        },
+        {
+            "name": "Prototyping",
+            "description": "Building preliminary versions of products for testing",
+            "career_relevance": ["UX/UI Designer", "Product Designer", "Biomedical Engineer"]
+        }
+    ],
+    "Healthcare Skills": [
+        {
+            "name": "Patient Care",
+            "description": "Providing direct care and support to patients",
+            "career_relevance": ["Nurse Practitioner", "Physician Assistant", "Medical Doctor"]
+        },
+        {
+            "name": "Clinical Assessment",
+            "description": "Evaluating patient health status and needs",
+            "career_relevance": ["Nurse Practitioner", "Clinical Psychologist", "Physical Therapist"]
+        },
+        {
+            "name": "Medical Device Design",
+            "description": "Creating specialized equipment for medical applications",
+            "career_relevance": ["Biomedical Engineer", "Medical Researcher", "Product Developer"]
+        },
+        {
+            "name": "Psychological Assessment",
+            "description": "Evaluating mental health, behavior, and cognitive functioning",
+            "career_relevance": ["Clinical Psychologist", "School Counselor", "Neuropsychologist"]
+        },
+        {
+            "name": "Therapy Techniques",
+            "description": "Applying treatment methods to improve mental or physical health",
+            "career_relevance": ["Clinical Psychologist", "Physical Therapist", "Occupational Therapist"]
+        }
+    ],
+    "Soft Skills": [
+        {
+            "name": "Communication",
+            "description": "Effectively exchanging information and ideas",
+            "career_relevance": ["Marketing Manager", "Nurse Practitioner", "Secondary School Teacher"]
+        },
+        {
+            "name": "Problem Solving",
+            "description": "Finding solutions to difficult or complex issues",
+            "career_relevance": ["Software Developer", "Civil Engineer", "Data Scientist"]
+        },
+        {
+            "name": "Critical Thinking",
+            "description": "Analyzing facts to form a judgment or make a decision",
+            "career_relevance": ["Clinical Psychologist", "Financial Analyst", "Cybersecurity Analyst"]
+        },
+        {
+            "name": "Leadership",
+            "description": "Guiding and influencing others to achieve a common goal",
+            "career_relevance": ["Marketing Manager", "Project Manager", "School Administrator"]
+        },
+        {
+            "name": "Teamwork",
+            "description": "Collaborating effectively with others in a group",
+            "career_relevance": ["Software Developer", "Nurse Practitioner", "Civil Engineer"]
+        }
+    ],
+    "Research Skills": [
+        {
+            "name": "Research",
+            "description": "Systematic investigation to establish facts and reach conclusions",
+            "career_relevance": ["Environmental Scientist", "Clinical Psychologist", "Data Scientist"]
+        },
+        {
+            "name": "Data Collection",
+            "description": "Gathering information in a systematic way",
+            "career_relevance": ["Environmental Scientist", "Market Researcher", "Social Scientist"]
+        },
+        {
+            "name": "Technical Writing",
+            "description": "Creating documents that explain complex information clearly",
+            "career_relevance": ["Software Developer", "Environmental Scientist", "Technical Writer"]
+        },
+        {
+            "name": "User Research",
+            "description": "Studying user behaviors, needs, and motivations",
+            "career_relevance": ["UX/UI Designer", "Product Manager", "Market Researcher"]
+        },
+        {
+            "name": "Analysis",
+            "description": "Examining data or information methodically",
+            "career_relevance": ["Data Scientist", "Financial Analyst", "Environmental Scientist"]
+        }
+    ],
+    "Educational Skills": [
+        {
+            "name": "Curriculum Development",
+            "description": "Creating educational content and learning pathways",
+            "career_relevance": ["Secondary School Teacher", "Instructional Designer", "Education Administrator"]
+        },
+        {
+            "name": "Classroom Management",
+            "description": "Creating a productive learning environment for students",
+            "career_relevance": ["Secondary School Teacher", "Professor", "Special Education Teacher"]
+        },
+        {
+            "name": "Assessment",
+            "description": "Evaluating learning progress and outcomes",
+            "career_relevance": ["Secondary School Teacher", "Educational Psychologist", "Curriculum Specialist"]
+        },
+        {
+            "name": "Instructional Design",
+            "description": "Developing effective learning experiences and materials",
+            "career_relevance": ["E-Learning Developer", "Secondary School Teacher", "Corporate Trainer"]
+        },
+        {
+            "name": "Educational Technology",
+            "description": "Using digital tools to enhance teaching and learning",
+            "career_relevance": ["Educational Technologist", "Digital Learning Specialist", "Secondary School Teacher"]
+        }
+    ]
+}

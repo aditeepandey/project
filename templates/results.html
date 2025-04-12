@@ -1,0 +1,216 @@
+{% extends 'layout.html' %}
+
+{% block title %} - Your Career Path Results{% endblock %}
+
+{% block head %}
+<style>
+    .recommendation-card {
+        transition: transform 0.3s ease;
+    }
+    .recommendation-card:hover {
+        transform: translateY(-5px);
+    }
+    .skill-badge {
+        font-size: 0.8rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mb-5">
+    <div class="card-body p-4">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-star me-2"></i>Your Career Path Recommendations
+        </h1>
+        
+        <!-- Profile Summary -->
+        <div class="bg-dark p-4 rounded mb-4">
+            <h3 class="h5 mb-3">
+                <i class="fas fa-user me-2"></i>Your Profile Summary
+            </h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Education Level:</strong> {{ user_data.education_level|replace('_', ' ')|title }}</p>
+                    <p><strong>GPA:</strong> {{ user_data.academic.gpa }}</p>
+                    <p><strong>Top Subject Scores:</strong>
+                        {% set scores = [
+                            ('Mathematics', user_data.academic.math_score),
+                            ('Science', user_data.academic.science_score),
+                            ('Language', user_data.academic.language_score),
+                            ('Humanities', user_data.academic.humanities_score),
+                            ('Computer/Tech', user_data.academic.computer_score)
+                        ] %}
+                        {% set sorted_scores = scores|sort(attribute=1, reverse=True) %}
+                        {% for subject, score in sorted_scores[:3] %}
+                            <span class="badge bg-primary">{{ subject }}: {{ score }}</span>
+                        {% endfor %}
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Selected Interests:</strong>
+                        {% for interest in user_data.interests %}
+                            <span class="badge bg-secondary">{{ interest|replace('_', ' ')|title }}</span>
+                        {% endfor %}
+                    </p>
+                    <p><strong>Selected Skills:</strong>
+                        {% for skill in user_data.skills %}
+                            <span class="badge bg-info">{{ skill|replace('_', ' ')|title }}</span>
+                        {% endfor %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Job Market Overview -->
+        <div class="mb-5">
+            <h3 class="h5 mb-3">
+                <i class="fas fa-chart-line me-2"></i>Job Market Overview
+            </h3>
+            <div class="row">
+                <div class="col-md-8">
+                    <canvas id="marketTrendsChart" height="250"></canvas>
+                </div>
+                <div class="col-md-4">
+                    <div class="card bg-dark h-100">
+                        <div class="card-body">
+                            <h5 class="card-title">Market Insights</h5>
+                            <ul class="list-group list-group-flush bg-dark">
+                                {% for career in trend_data.careers[:3] %}
+                                <li class="list-group-item bg-dark">
+                                    <strong>{{ career.name }}</strong>: 
+                                    {% if career.growth > 10 %}
+                                        <span class="text-success">High growth ({{ career.growth }}%)</span>
+                                    {% elif career.growth > 5 %}
+                                        <span class="text-primary">Moderate growth ({{ career.growth }}%)</span>
+                                    {% else %}
+                                        <span class="text-warning">Stable ({{ career.growth }}%)</span>
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Career Path Recommendations -->
+        <h3 class="h5 mb-3">
+            <i class="fas fa-compass me-2"></i>Recommended Career Paths
+        </h3>
+        <div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+            {% for career in recommendations %}
+            <div class="col">
+                <div class="card h-100 recommendation-card">
+                    <div class="card-header bg-primary bg-opacity-75">
+                        <h5 class="card-title mb-0">{{ career.title }}</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ career.description }}</p>
+                        
+                        <!-- Match Score -->
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="me-2">Match:</div>
+                            <div class="progress flex-grow-1" style="height: 10px;">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: {{ career.match_score }}%"
+                                    aria-valuenow="{{ career.match_score }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="ms-2"><strong>{{ career.match_score }}%</strong></div>
+                        </div>
+                        
+                        <!-- Required Skills -->
+                        <p class="mb-2"><strong>Key Required Skills:</strong></p>
+                        <div class="mb-3">
+                            {% for skill in career.required_skills %}
+                            <span class="badge bg-secondary skill-badge me-1 mb-1">{{ skill }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <!-- Education Requirements -->
+                        <p class="mb-2"><strong>Education Required:</strong></p>
+                        <p>{{ career.education_required }}</p>
+                        
+                        <!-- Salary Range -->
+                        <p class="mb-2"><strong>Average Salary Range:</strong></p>
+                        <p>${{ "{:,}".format(career.salary_range.min) }} - ${{ "{:,}".format(career.salary_range.max) }}</p>
+                    </div>
+                    <div class="card-footer">
+                        <button class="btn btn-outline-primary btn-sm" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#career{{ loop.index }}Details"
+                                aria-expanded="false" aria-controls="career{{ loop.index }}Details">
+                            <i class="fas fa-graduation-cap me-1"></i>View Upskilling Path
+                        </button>
+                    </div>
+                    
+                    <!-- Upskilling Path (Collapsed by default) -->
+                    <div class="collapse" id="career{{ loop.index }}Details">
+                        <div class="card-body border-top">
+                            <h6 class="mb-3">Recommended Upskilling Path</h6>
+                            <ol class="list-group list-group-numbered">
+                                {% for step in career.upskilling_path %}
+                                <li class="list-group-item bg-dark bg-opacity-50 border-0 ps-0">
+                                    <div class="fw-bold">{{ step.title }}</div>
+                                    <p class="mb-1">{{ step.description }}</p>
+                                    {% if step.resources %}
+                                    <small class="text-muted">Resources: {{ step.resources }}</small>
+                                    {% endif %}
+                                </li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <!-- Recommended Additional Skills -->
+        <div class="bg-dark p-4 rounded mb-4">
+            <h3 class="h5 mb-3">
+                <i class="fas fa-tools me-2"></i>Recommended Additional Skills to Develop
+            </h3>
+            <div class="row">
+                {% for category, skills in skill_data.items() %}
+                <div class="col-md-4 mb-3">
+                    <h6>{{ category }}</h6>
+                    <ul class="list-unstyled">
+                        {% for skill in skills %}
+                        <li class="mb-1">
+                            <span class="badge bg-primary me-2"><i class="fas fa-check"></i></span>
+                            {{ skill.name }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% if loop.index % 3 == 0 and not loop.last %}
+                </div><div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        
+        <!-- Actions -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-outline-primary me-2">
+                <i class="fas fa-redo me-1"></i>Try Again
+            </a>
+            <button class="btn btn-primary" onclick="window.print()">
+                <i class="fas fa-print me-1"></i>Print Results
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/charts.js') }}"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Market trends data from backend
+        const trendData = {{ trend_data|tojson }};
+        
+        // Initialize market trends chart
+        initMarketTrendsChart('marketTrendsChart', trendData);
+    });
+</script>
+{% endblock %}

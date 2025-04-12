@@ -1,0 +1,214 @@
+{
+    "careers": [
+        {
+            "name": "Software Developer",
+            "growth": 22,
+            "demand": 9,
+            "outlook": "Excellent",
+            "emerging_skills": ["Cloud Computing", "DevOps", "Mobile Development", "AI Integration"],
+            "regional_demand": {
+                "west": "Very High",
+                "midwest": "High",
+                "south": "High",
+                "northeast": "Very High",
+                "international": "Very High"
+            }
+        },
+        {
+            "name": "Data Scientist",
+            "growth": 31,
+            "demand": 10,
+            "outlook": "Excellent",
+            "emerging_skills": ["Deep Learning", "Natural Language Processing", "Big Data", "Cloud Platforms"],
+            "regional_demand": {
+                "west": "Very High",
+                "midwest": "High",
+                "south": "High",
+                "northeast": "Very High",
+                "international": "Very High"
+            }
+        },
+        {
+            "name": "UX/UI Designer",
+            "growth": 13,
+            "demand": 8,
+            "outlook": "Good",
+            "emerging_skills": ["AR/VR Design", "Voice Interface Design", "Design Systems", "Accessibility"],
+            "regional_demand": {
+                "west": "Very High",
+                "midwest": "Moderate",
+                "south": "High",
+                "northeast": "High",
+                "international": "High"
+            }
+        },
+        {
+            "name": "Financial Analyst",
+            "growth": 9,
+            "demand": 7,
+            "outlook": "Good",
+            "emerging_skills": ["Fintech Knowledge", "Blockchain", "Automation Tools", "Data Visualization"],
+            "regional_demand": {
+                "west": "High",
+                "midwest": "Moderate",
+                "south": "Moderate",
+                "northeast": "Very High",
+                "international": "High"
+            }
+        },
+        {
+            "name": "Marketing Manager",
+            "growth": 10,
+            "demand": 8,
+            "outlook": "Good",
+            "emerging_skills": ["Marketing Automation", "Data Analytics", "Content Strategy", "Video Marketing"],
+            "regional_demand": {
+                "west": "High",
+                "midwest": "Moderate",
+                "south": "High",
+                "northeast": "High",
+                "international": "High"
+            }
+        },
+        {
+            "name": "Biomedical Engineer",
+            "growth": 17,
+            "demand": 7,
+            "outlook": "Good",
+            "emerging_skills": ["3D Bioprinting", "Artificial Organs", "Wearable Technology", "Medical Robotics"],
+            "regional_demand": {
+                "west": "High",
+                "midwest": "Moderate",
+                "south": "High",
+                "northeast": "High",
+                "international": "High"
+            }
+        },
+        {
+            "name": "Clinical Psychologist",
+            "growth": 14,
+            "demand": 8,
+            "outlook": "Good",
+            "emerging_skills": ["Telehealth", "Trauma-Informed Care", "Cross-Cultural Competence", "Digital Therapeutics"],
+            "regional_demand": {
+                "west": "High",
+                "midwest": "High",
+                "south": "High",
+                "northeast": "High",
+                "international": "Moderate"
+            }
+        },
+        {
+            "name": "Environmental Scientist",
+            "growth": 8,
+            "demand": 7,
+            "outlook": "Good",
+            "emerging_skills": ["Climate Modeling", "Remote Sensing", "Geographic Information Systems", "Sustainable Development"],
+            "regional_demand": {
+                "west": "High",
+                "midwest": "Moderate",
+                "south": "Moderate",
+                "northeast": "High",
+                "international": "High"
+            }
+        },
+        {
+            "name": "Civil Engineer",
+            "growth": 8,
+            "demand": 7,
+            "outlook": "Good",
+            "emerging_skills": ["Sustainable Design", "Building Information Modeling", "Smart City Infrastructure", "Resilient Design"],
+            "regional_demand": {
+                "west": "High",
+                "midwest": "Moderate",
+                "south": "High",
+                "northeast": "Moderate",
+                "international": "Very High"
+            }
+        },
+        {
+            "name": "Nurse Practitioner",
+            "growth": 45,
+            "demand": 10,
+            "outlook": "Excellent",
+            "emerging_skills": ["Telehealth", "Geriatric Care", "Preventive Medicine", "Mental Health"],
+            "regional_demand": {
+                "west": "Very High",
+                "midwest": "Very High",
+                "south": "Very High",
+                "northeast": "Very High",
+                "international": "High"
+            }
+        },
+        {
+            "name": "Secondary School Teacher",
+            "growth": 4,
+            "demand": 6,
+            "outlook": "Stable",
+            "emerging_skills": ["Educational Technology", "Social-Emotional Learning", "Project-Based Learning", "Virtual Teaching"],
+            "regional_demand": {
+                "west": "Moderate",
+                "midwest": "Moderate",
+                "south": "High",
+                "northeast": "Moderate",
+                "international": "Moderate"
+            }
+        },
+        {
+            "name": "Cybersecurity Analyst",
+            "growth": 33,
+            "demand": 10,
+            "outlook": "Excellent",
+            "emerging_skills": ["Cloud Security", "Threat Intelligence", "Security Automation", "Zero Trust Architecture"],
+            "regional_demand": {
+                "west": "Very High",
+                "midwest": "High",
+                "south": "High",
+                "northeast": "Very High",
+                "international": "Very High"
+            }
+        },
+        {
+            "name": "Web Developer",
+            "growth": 13,
+            "demand": 8,
+            "outlook": "Good",
+            "emerging_skills": ["Progressive Web Apps", "JAMstack", "WebAssembly", "Serverless Architecture"],
+            "regional_demand": {
+                "west": "High",
+                "midwest": "Moderate",
+                "south": "High",
+                "northeast": "High",
+                "international": "High"
+            }
+        },
+        {
+            "name": "Physical Therapist",
+            "growth": 18,
+            "demand": 8,
+            "outlook": "Good",
+            "emerging_skills": ["Telerehabilitation", "Geriatric Care", "Sports Rehabilitation", "Pain Management"],
+            "regional_demand": {
+                "west": "High",
+                "midwest": "High",
+                "south": "High",
+                "northeast": "High",
+                "international": "Moderate"
+            }
+        },
+        {
+            "name": "Management Consultant",
+            "growth": 14,
+            "demand": 8,
+            "outlook": "Good",
+            "emerging_skills": ["Digital Transformation", "Change Management", "AI Strategy", "Sustainability Consulting"],
+            "regional_demand": {
+                "west": "High",
+                "midwest": "Moderate",
+                "south": "High",
+                "northeast": "Very High",
+                "international": "High"
+            }
+        }
+    ]
+}

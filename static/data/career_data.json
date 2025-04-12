@@ -1,0 +1,397 @@
+[
+    {
+        "title": "Software Developer",
+        "description": "Create, modify, and test software applications to meet user needs. Software developers design, build, and maintain computer programs, applications, and systems.",
+        "education_required": "bachelors",
+        "academic_requirements": {
+            "min_gpa": 3.0,
+            "math": 75,
+            "science": 70,
+            "computer": 80
+        },
+        "required_skills": [
+            "Programming",
+            "Problem Solving",
+            "Critical Thinking",
+            "Teamwork",
+            "Technical Writing"
+        ],
+        "related_interests": [
+            "technology",
+            "engineering",
+            "problem_solving"
+        ],
+        "salary_range": {
+            "min": 75000,
+            "max": 120000
+        },
+        "recommended_certifications": [
+            "AWS Certified Developer",
+            "Microsoft Certified: Azure Developer Associate",
+            "Oracle Certified Professional, Java SE Developer",
+            "Google Associate Cloud Engineer"
+        ]
+    },
+    {
+        "title": "Data Scientist",
+        "description": "Analyze large datasets to extract meaningful insights. Data scientists combine statistics, mathematics, and programming to interpret complex data and help organizations make better decisions.",
+        "education_required": "masters",
+        "academic_requirements": {
+            "min_gpa": 3.2,
+            "math": 85,
+            "science": 75,
+            "computer": 75
+        },
+        "required_skills": [
+            "Data Analysis",
+            "Statistics",
+            "Programming",
+            "Machine Learning",
+            "Data Visualization"
+        ],
+        "related_interests": [
+            "technology",
+            "science",
+            "business",
+            "research"
+        ],
+        "salary_range": {
+            "min": 90000,
+            "max": 150000
+        },
+        "recommended_certifications": [
+            "IBM Data Science Professional Certificate",
+            "Microsoft Certified: Azure Data Scientist Associate",
+            "Google Professional Data Engineer",
+            "Cloudera Certified Professional: Data Scientist"
+        ]
+    },
+    {
+        "title": "UX/UI Designer",
+        "description": "Design digital products with a focus on user experience. UX/UI designers create user-friendly interfaces and ensure products are intuitive, accessible, and visually appealing.",
+        "education_required": "bachelors",
+        "academic_requirements": {
+            "min_gpa": 2.8,
+            "computer": 70,
+            "humanities": 75
+        },
+        "required_skills": [
+            "Design",
+            "User Research",
+            "Wireframing",
+            "Visual Communication",
+            "Prototyping"
+        ],
+        "related_interests": [
+            "arts",
+            "technology",
+            "design"
+        ],
+        "salary_range": {
+            "min": 65000,
+            "max": 110000
+        },
+        "recommended_certifications": [
+            "Google UX Design Professional Certificate",
+            "Certified User Experience Professional (CUXP)",
+            "Interaction Design Foundation Certification",
+            "Nielsen Norman Group UX Certification"
+        ]
+    },
+    {
+        "title": "Financial Analyst",
+        "description": "Evaluate financial data to guide investment decisions. Financial analysts research economic trends, analyze financial statements, and recommend investment strategies to individuals or companies.",
+        "education_required": "bachelors",
+        "academic_requirements": {
+            "min_gpa": 3.2,
+            "math": 80,
+            "language": 70
+        },
+        "required_skills": [
+            "Financial Modeling",
+            "Data Analysis",
+            "Research",
+            "Critical Thinking",
+            "Communication"
+        ],
+        "related_interests": [
+            "business",
+            "finance",
+            "economics"
+        ],
+        "salary_range": {
+            "min": 65000,
+            "max": 110000
+        },
+        "recommended_certifications": [
+            "Chartered Financial Analyst (CFA)",
+            "Certified Financial Planner (CFP)",
+            "Financial Risk Manager (FRM)",
+            "Chartered Alternative Investment Analyst (CAIA)"
+        ]
+    },
+    {
+        "title": "Marketing Manager",
+        "description": "Develop and implement marketing strategies to promote products or services. Marketing managers oversee campaigns, analyze market trends, and work to increase brand awareness and sales.",
+        "education_required": "bachelors",
+        "academic_requirements": {
+            "min_gpa": 2.8,
+            "language": 75,
+            "humanities": 70
+        },
+        "required_skills": [
+            "Digital Marketing",
+            "Strategic Planning",
+            "Communication",
+            "Social Media",
+            "Data Analysis"
+        ],
+        "related_interests": [
+            "business",
+            "media",
+            "arts",
+            "psychology"
+        ],
+        "salary_range": {
+            "min": 70000,
+            "max": 120000
+        },
+        "recommended_certifications": [
+            "Google Ads Certification",
+            "HubSpot Marketing Certification",
+            "Facebook Blueprint Certification",
+            "American Marketing Association Professional Certified Marketer"
+        ]
+    },
+    {
+        "title": "Biomedical Engineer",
+        "description": "Combine engineering principles with medical and biological sciences to design medical equipment, devices, and software. Biomedical engineers develop technological solutions for healthcare challenges.",
+        "education_required": "bachelors",
+        "academic_requirements": {
+            "min_gpa": 3.3,
+            "math": 80,
+            "science": 85,
+            "computer": 70
+        },
+        "required_skills": [
+            "Medical Device Design",
+            "Programming",
+            "Research",
+            "Problem Solving",
+            "Technical Documentation"
+        ],
+        "related_interests": [
+            "healthcare",
+            "engineering",
+            "science",
+            "technology"
+        ],
+        "salary_range": {
+            "min": 75000,
+            "max": 130000
+        },
+        "recommended_certifications": [
+            "Certified Clinical Engineer (CCE)",
+            "Certified Biomedical Equipment Technician (CBET)",
+            "Medical Device Development Professional (MDDP)",
+            "Regulatory Affairs Certification (RAC)"
+        ]
+    },
+    {
+        "title": "Clinical Psychologist",
+        "description": "Diagnose and treat mental, emotional, and behavioral disorders. Clinical psychologists provide therapy, conduct research, and develop treatment plans to help patients improve their mental health and well-being.",
+        "education_required": "phd",
+        "academic_requirements": {
+            "min_gpa": 3.5,
+            "science": 75,
+            "language": 80,
+            "humanities": 85
+        },
+        "required_skills": [
+            "Psychological Assessment",
+            "Therapy Techniques",
+            "Research",
+            "Communication",
+            "Critical Thinking"
+        ],
+        "related_interests": [
+            "healthcare",
+            "social_service",
+            "research",
+            "education"
+        ],
+        "salary_range": {
+            "min": 75000,
+            "max": 130000
+        },
+        "recommended_certifications": [
+            "American Board of Professional Psychology Certification",
+            "National Clinical Mental Health Counselor Examination (NCMHCE)",
+            "Certified Clinical Mental Health Counselor (CCMHC)",
+            "Board Certified Behavior Analyst (BCBA)"
+        ]
+    },
+    {
+        "title": "Environmental Scientist",
+        "description": "Study environmental issues and develop solutions to protect the environment. Environmental scientists conduct research, collect data, and work to address pollution, conservation, and sustainability challenges.",
+        "education_required": "bachelors",
+        "academic_requirements": {
+            "min_gpa": 3.0,
+            "science": 80,
+            "math": 70
+        },
+        "required_skills": [
+            "Data Collection",
+            "Research",
+            "Analysis",
+            "Technical Writing",
+            "Project Management"
+        ],
+        "related_interests": [
+            "environment",
+            "science",
+            "research",
+            "social_service"
+        ],
+        "salary_range": {
+            "min": 60000,
+            "max": 100000
+        },
+        "recommended_certifications": [
+            "Certified Environmental Professional (CEP)",
+            "Registered Environmental Manager (REM)",
+            "Professional Wetland Scientist (PWS)",
+            "LEED Accredited Professional"
+        ]
+    },
+    {
+        "title": "Civil Engineer",
+        "description": "Design, build, and maintain infrastructure projects. Civil engineers plan and oversee construction of roads, bridges, buildings, water systems, and other essential structures.",
+        "education_required": "bachelors",
+        "academic_requirements": {
+            "min_gpa": 3.0,
+            "math": 80,
+            "science": 75,
+            "computer": 70
+        },
+        "required_skills": [
+            "CAD Design",
+            "Project Management",
+            "Technical Drawing",
+            "Problem Solving",
+            "Mathematics"
+        ],
+        "related_interests": [
+            "engineering",
+            "construction",
+            "environment",
+            "design"
+        ],
+        "salary_range": {
+            "min": 70000,
+            "max": 115000
+        },
+        "recommended_certifications": [
+            "Professional Engineer (PE) License",
+            "Certified Construction Manager (CCM)",
+            "Leadership in Energy and Environmental Design (LEED)",
+            "Project Management Professional (PMP)"
+        ]
+    },
+    {
+        "title": "Nurse Practitioner",
+        "description": "Provide advanced nursing care and primary healthcare services. Nurse practitioners can diagnose and treat illnesses, prescribe medications, and serve as primary healthcare providers.",
+        "education_required": "masters",
+        "academic_requirements": {
+            "min_gpa": 3.3,
+            "science": 85,
+            "humanities": 75
+        },
+        "required_skills": [
+            "Patient Care",
+            "Clinical Assessment",
+            "Medical Knowledge",
+            "Communication",
+            "Critical Thinking"
+        ],
+        "related_interests": [
+            "healthcare",
+            "social_service",
+            "science"
+        ],
+        "salary_range": {
+            "min": 90000,
+            "max": 140000
+        },
+        "recommended_certifications": [
+            "Family Nurse Practitioner Certification (FNP-BC)",
+            "Adult-Gerontology Nurse Practitioner Certification",
+            "Pediatric Nurse Practitioner Certification",
+            "Emergency Nurse Practitioner Certification"
+        ]
+    },
+    {
+        "title": "Secondary School Teacher",
+        "description": "Educate students in middle or high school settings. Secondary school teachers specialize in specific subjects, prepare lesson plans, assess student progress, and foster intellectual and social development.",
+        "education_required": "bachelors",
+        "academic_requirements": {
+            "min_gpa": 2.8,
+            "language": 75,
+            "humanities": 70
+        },
+        "required_skills": [
+            "Curriculum Development",
+            "Classroom Management",
+            "Communication",
+            "Subject Expertise",
+            "Assessment"
+        ],
+        "related_interests": [
+            "education",
+            "social_service",
+            "humanities"
+        ],
+        "salary_range": {
+            "min": 50000,
+            "max": 85000
+        },
+        "recommended_certifications": [
+            "State Teaching Certification/License",
+            "National Board Certification",
+            "TESOL Certification (for ESL)",
+            "Google Certified Educator"
+        ]
+    },
+    {
+        "title": "Cybersecurity Analyst",
+        "description": "Protect computer systems and networks from security breaches. Cybersecurity analysts monitor for threats, implement security measures, and respond to incidents to keep data and systems secure.",
+        "education_required": "bachelors",
+        "academic_requirements": {
+            "min_gpa": 3.0,
+            "computer": 85,
+            "math": 75
+        },
+        "required_skills": [
+            "Network Security",
+            "Risk Assessment",
+            "Incident Response",
+            "Programming",
+            "System Administration"
+        ],
+        "related_interests": [
+            "technology",
+            "security",
+            "problem_solving"
+        ],
+        "salary_range": {
+            "min": 80000,
+            "max": 130000
+        },
+        "recommended_certifications": [
+            "Certified Information Systems Security Professional (CISSP)",
+            "Certified Ethical Hacker (CEH)",
+            "CompTIA Security+",
+            "Certified Information Security Manager (CISM)"
+        ]
+    }
+]

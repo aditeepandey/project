@@ -1,0 +1,126 @@
+{% extends "layout.html" %}
+
+{% block title %} - My Profile{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <h1 class="mb-4"><i class="fas fa-user-circle me-2"></i>My Profile</h1>
+            <div class="card shadow-sm mb-4">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Account Information</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Username:</div>
+                        <div class="col-md-8">{{ current_user.username }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Email:</div>
+                        <div class="col-md-8">{{ current_user.email }}</div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-md-4 fw-bold">Member Since:</div>
+                        <div class="col-md-8">{{ current_user.created_at.strftime('%B %d, %Y') }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <a href="#" class="btn btn-outline-primary">
+                                <i class="fas fa-edit me-2"></i>Edit Profile
+                            </a>
+                            <a href="#" class="btn btn-outline-secondary ms-2">
+                                <i class="fas fa-key me-2"></i>Change Password
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm bg-primary text-white">
+                <div class="card-body text-center py-4">
+                    <i class="fas fa-user-circle fa-5x mb-3"></i>
+                    <h5 class="card-title">{{ current_user.username }}</h5>
+                    <p class="card-text">{{ profiles|length }} Assessment{{ 's' if profiles|length != 1 }}</p>
+                    <a href="{{ url_for('index') }}" class="btn btn-light">
+                        <i class="fas fa-plus-circle me-2"></i>New Assessment
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="mb-4"><i class="fas fa-history me-2"></i>Assessment History</h2>
+
+    {% if profiles %}
+        <div class="row">
+            {% for profile in profiles %}
+                <div class="col-md-6 mb-4">
+                    <div class="card shadow-sm h-100">
+                        <div class="card-header d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Assessment #{{ profile.id }}</h5>
+                            <span class="badge bg-primary">{{ profile.created_at.strftime('%Y-%m-%d') }}</span>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <h6>Education Level</h6>
+                                <p>{{ profile.education_level }}</p>
+                            </div>
+                            <div class="mb-3">
+                                <h6>Academic Scores</h6>
+                                <div class="row g-2">
+                                    <div class="col-6">
+                                        <div class="border rounded p-2 text-center">
+                                            <span class="d-block">GPA</span>
+                                            <strong class="fs-5">{{ profile.gpa }}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="border rounded p-2 text-center">
+                                            <span class="d-block">Math</span>
+                                            <strong class="fs-5">{{ profile.math_score }}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="border rounded p-2 text-center">
+                                            <span class="d-block">Science</span>
+                                            <strong class="fs-5">{{ profile.science_score }}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="border rounded p-2 text-center">
+                                            <span class="d-block">Computer</span>
+                                            <strong class="fs-5">{{ profile.computer_score }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% if profile.recommendations %}
+                                <div class="mb-3">
+                                    <h6>Top Career Recommendations</h6>
+                                    <ul class="list-group">
+                                        {% for rec in profile.recommendations[:3] %}
+                                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                                {{ rec.title }}
+                                                <span class="badge bg-success">{{ rec.match_score }}%</span>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                            <a href="#" class="btn btn-outline-primary btn-sm">View Full Results</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <i class="fas fa-info-circle me-2"></i>
+            You haven't completed any assessments yet. 
+            <a href="{{ url_for('index') }}" class="alert-link">Take your first assessment now</a>.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

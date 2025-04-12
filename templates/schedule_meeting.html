@@ -1,0 +1,203 @@
+{% extends 'layout.html' %}
+
+{% block title %} - Schedule a Meeting with a Career Professional{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mb-5">
+    <div class="card-body p-4">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-user-tie me-2"></i>Schedule a Meeting
+        </h1>
+        <p class="lead text-center">Book a one-on-one session with one of our career counseling professionals for personalized guidance.</p>
+        
+        <!-- Display flash messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        <div class="row mt-4">
+            <!-- Our Professionals -->
+            <div class="col-md-5">
+                <div class="card bg-dark mb-4">
+                    <div class="card-header">
+                        <h3 class="h5 mb-0">Our Career Professionals</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="bg-primary rounded-circle p-2 d-flex justify-content-center align-items-center me-3" style="width: 40px; height: 40px;">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <h4 class="h6 mb-0">Dr. Sarah Johnson</h4>
+                            </div>
+                            <p class="small ms-5 mb-1">Education Specialist, PhD in Educational Psychology</p>
+                            <p class="small ms-5">Specializes in educational pathways and academic career planning</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="bg-primary rounded-circle p-2 d-flex justify-content-center align-items-center me-3" style="width: 40px; height: 40px;">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <h4 class="h6 mb-0">Mark Thompson</h4>
+                            </div>
+                            <p class="small ms-5 mb-1">Industry Expert, 15+ years in Tech Recruitment</p>
+                            <p class="small ms-5">Specializes in STEM careers and industry transitions</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="bg-primary rounded-circle p-2 d-flex justify-content-center align-items-center me-3" style="width: 40px; height: 40px;">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <h4 class="h6 mb-0">Lisa Chen</h4>
+                            </div>
+                            <p class="small ms-5 mb-1">Career Coach, MBA, Certified Career Counselor</p>
+                            <p class="small ms-5">Specializes in business careers and entrepreneurship</p>
+                        </div>
+                        
+                        <div class="mb-0">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="bg-primary rounded-circle p-2 d-flex justify-content-center align-items-center me-3" style="width: 40px; height: 40px;">
+                                    <i class="fas fa-user text-white"></i>
+                                </div>
+                                <h4 class="h6 mb-0">David Rodriguez</h4>
+                            </div>
+                            <p class="small ms-5 mb-1">Skills Development Coach, MS in Psychology</p>
+                            <p class="small ms-5">Specializes in creative and healthcare fields</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card bg-dark">
+                    <div class="card-header">
+                        <h3 class="h5 mb-0">What to Expect</h3>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush bg-transparent">
+                            <li class="list-group-item bg-transparent border-secondary">
+                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                30-minute personalized consultation
+                            </li>
+                            <li class="list-group-item bg-transparent border-secondary">
+                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                In-depth discussion of your career goals
+                            </li>
+                            <li class="list-group-item bg-transparent border-secondary">
+                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                Customized action plan based on your profile
+                            </li>
+                            <li class="list-group-item bg-transparent border-secondary">
+                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                Resource recommendations for your path
+                            </li>
+                            <li class="list-group-item bg-transparent border-secondary">
+                                <i class="fas fa-check-circle text-primary me-2"></i>
+                                Follow-up email with meeting notes
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Scheduling Form -->
+            <div class="col-md-7">
+                <div class="card bg-dark">
+                    <div class="card-header">
+                        <h3 class="h5 mb-0">Book Your Session</h3>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url_for('submit_meeting') }}" method="POST">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Your Name</label>
+                                <input type="text" class="form-control" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" name="email" required>
+                                <small class="text-muted">We'll send a confirmation to this email.</small>
+                            </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <label for="date" class="form-label">Preferred Date</label>
+                                    <input type="date" class="form-control" id="date" name="date" min="{{ tomorrow_date }}" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="time" class="form-label">Preferred Time</label>
+                                    <select class="form-select" id="time" name="time" required>
+                                        <option value="" selected disabled>Select time</option>
+                                        <option value="09:00">9:00 AM</option>
+                                        <option value="10:00">10:00 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                        <option value="13:00">1:00 PM</option>
+                                        <option value="14:00">2:00 PM</option>
+                                        <option value="15:00">3:00 PM</option>
+                                        <option value="16:00">4:00 PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="professional" class="form-label">Select a Professional</label>
+                                <select class="form-select" id="professional" name="professional" required>
+                                    <option value="" selected disabled>Choose a professional</option>
+                                    <option value="sarah_johnson">Dr. Sarah Johnson - Education Specialist</option>
+                                    <option value="mark_thompson">Mark Thompson - Industry Expert</option>
+                                    <option value="lisa_chen">Lisa Chen - Career Coach</option>
+                                    <option value="david_rodriguez">David Rodriguez - Skills Development Coach</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="topic" class="form-label">What would you like to discuss?</label>
+                                <textarea class="form-control" id="topic" name="topic" rows="3" required></textarea>
+                                <small class="text-muted">Brief description of your career questions or concerns.</small>
+                            </div>
+                            
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-calendar-check me-2"></i>Book Appointment
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Back to home -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Career Predictor
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Set minimum date to tomorrow
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('date');
+        if (dateInput) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            const formattedDate = tomorrow.toISOString().split('T')[0];
+            dateInput.min = formattedDate;
+            
+            // Set default date to tomorrow
+            dateInput.value = formattedDate;
+        }
+    });
+</script>
+{% endblock %}

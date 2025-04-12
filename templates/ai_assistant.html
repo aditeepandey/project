@@ -1,0 +1,193 @@
+{% extends 'layout.html' %}
+
+{% block title %} - AI Career Assistant{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mb-5">
+    <div class="card-body p-4">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-robot me-2"></i>AI Career Assistant
+        </h1>
+        <p class="lead text-center">Ask our AI assistant questions about careers, education requirements, job market trends, and more.</p>
+        
+        <div class="mt-5 mb-4">
+            <div class="card bg-dark mb-4">
+                <div class="card-body">
+                    <div id="chat-messages" class="mb-4 ps-2 pe-2" style="height: 400px; overflow-y: auto;">
+                        <!-- AI welcome message -->
+                        <div class="d-flex mb-3">
+                            <div class="flex-shrink-0">
+                                <div class="bg-primary rounded-circle p-2 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
+                                    <i class="fas fa-robot text-white"></i>
+                                </div>
+                            </div>
+                            <div class="ms-3 p-3 bg-secondary rounded" style="max-width: 80%;">
+                                <p class="mb-0">Hello! I'm your Career AI Assistant. I can help answer questions about career paths, education requirements, job market trends, and more. What would you like to know?</p>
+                            </div>
+                        </div>
+                        <!-- Chat messages will be added here dynamically -->
+                    </div>
+                    
+                    <div class="mt-3">
+                        <form id="chat-form" class="d-flex">
+                            <input type="text" id="user-message" class="form-control me-2" placeholder="Type your question here..." required>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Suggested questions -->
+            <div class="card bg-dark">
+                <div class="card-header">
+                    <h3 class="h5 mb-0">Suggested Questions</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-primary w-100 text-start mb-2 suggested-question">
+                                What are the best careers for someone with strong math skills?
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-primary w-100 text-start mb-2 suggested-question">
+                                How is the job market for software engineers?
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-primary w-100 text-start mb-2 suggested-question">
+                                What education is required for a career in healthcare?
+                            </button>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-outline-primary w-100 text-start mb-2 suggested-question">
+                                What are typical salary ranges for financial analysts?
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Back to home -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('index') }}" class="btn btn-outline-primary">
+                <i class="fas fa-arrow-left me-2"></i>Back to Career Predictor
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const chatForm = document.getElementById('chat-form');
+        const userMessageInput = document.getElementById('user-message');
+        const chatMessages = document.getElementById('chat-messages');
+        const suggestedQuestions = document.querySelectorAll('.suggested-question');
+        
+        // Function to add a message to the chat
+        function addMessage(message, isUser) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'd-flex mb-3';
+            
+            if (isUser) {
+                messageDiv.className += ' justify-content-end';
+                messageDiv.innerHTML = `
+                    <div class="me-3 p-3 bg-primary rounded" style="max-width: 80%;">
+                        <p class="mb-0">${message}</p>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <div class="bg-info rounded-circle p-2 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
+                            <i class="fas fa-user text-white"></i>
+                        </div>
+                    </div>
+                `;
+            } else {
+                messageDiv.innerHTML = `
+                    <div class="flex-shrink-0">
+                        <div class="bg-primary rounded-circle p-2 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
+                            <i class="fas fa-robot text-white"></i>
+                        </div>
+                    </div>
+                    <div class="ms-3 p-3 bg-secondary rounded" style="max-width: 80%;">
+                        <p class="mb-0">${message}</p>
+                    </div>
+                `;
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+        
+        // Function to send message to AI and get response
+        function sendMessage(message) {
+            addMessage(message, true);
+            
+            // Show loading indicator
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = 'd-flex mb-3';
+            loadingDiv.innerHTML = `
+                <div class="flex-shrink-0">
+                    <div class="bg-primary rounded-circle p-2 d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">
+                        <i class="fas fa-robot text-white"></i>
+                    </div>
+                </div>
+                <div class="ms-3 p-3 bg-secondary rounded" style="max-width: 80%;">
+                    <p class="mb-0"><i class="fas fa-spinner fa-spin"></i> Thinking...</p>
+                </div>
+            `;
+            chatMessages.appendChild(loadingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Make AJAX request to get AI response
+            fetch('/ai-chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `message=${encodeURIComponent(message)}`
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Remove loading indicator
+                chatMessages.removeChild(loadingDiv);
+                
+                if (data.status === 'success') {
+                    addMessage(data.message, false);
+                } else {
+                    addMessage('Sorry, I encountered an error while processing your question. Please try again.', false);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                chatMessages.removeChild(loadingDiv);
+                addMessage('Sorry, I encountered an error while processing your question. Please try again.', false);
+            });
+        }
+        
+        // Handle form submission
+        chatForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const message = userMessageInput.value.trim();
+            if (message) {
+                sendMessage(message);
+                userMessageInput.value = '';
+            }
+        });
+        
+        // Handle suggested questions
+        suggestedQuestions.forEach(button => {
+            button.addEventListener('click', function() {
+                const question = this.textContent.trim();
+                userMessageInput.value = question;
+                sendMessage(question);
+            });
+        });
+    });
+</script>
+{% endblock %}

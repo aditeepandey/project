@@ -1,0 +1,345 @@
+{% extends 'layout.html' %}
+
+{% block title %} - Find Your Ideal Career Path{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mb-5">
+    <div class="card-body p-4">
+        <h1 class="text-center mb-4">
+            <i class="fas fa-compass me-2"></i>Career Path Predictor
+        </h1>
+        <p class="lead text-center">Discover the most suitable career paths based on your academic performance, interests, and the current job market trends.</p>
+
+        <div class="row mt-5">
+            <div class="col-md-10 offset-md-1">
+                <form action="{{ url_for('predict') }}" method="POST" id="careerForm">
+                    <!-- Education Level -->
+                    <div class="mb-4">
+                        <h3 class="h5 mb-3">
+                            <i class="fas fa-graduation-cap me-2"></i>Education Level
+                        </h3>
+                        <select name="education_level" class="form-select" required>
+                            <option value="" selected disabled>Select your current or expected education level</option>
+                            <option value="high_school">High School</option>
+                            <option value="associates">Associate's Degree</option>
+                            <option value="bachelors">Bachelor's Degree</option>
+                            <option value="masters">Master's Degree</option>
+                            <option value="phd">PhD or Doctoral</option>
+                        </select>
+                    </div>
+
+                    <!-- Academic Performance -->
+                    <div class="mb-4">
+                        <h3 class="h5 mb-3">
+                            <i class="fas fa-book me-2"></i>Academic Performance
+                        </h3>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="gpa" class="form-label">Overall GPA (0.0 - 10.0)</label>
+                                <input type="number" class="form-control" id="gpa" name="gpa" step="0.1" min="0" max="10" required placeholder="e.g., 8.5">
+                            </div>
+
+                            <div class="col-md-6">
+                                {% if current_user.is_authenticated %}
+                                    <label for="email" class="form-label">Email (Autofilled)</label>
+                                    <input type="email" class="form-control" id="email" name="email" value="{{ current_user.email }}" readonly>
+                                    <small class="text-success">
+                                        <i class="fas fa-check-circle me-1"></i>Signed in as {{ current_user.username }}
+                                    </small>
+                                {% else %}
+                                    <label for="email" class="form-label">Email (Optional)</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="your@email.com">
+                                    <small class="text-muted">
+                                        <i class="fas fa-info-circle me-1"></i>Not signed in?
+                                        <a href="{{ url_for('login') }}">Login</a> or
+                                        <a href="{{ url_for('register') }}">Register</a> to save your results
+                                    </small>
+                                {% endif %}
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="math_score" class="form-label">Mathematics Score (0-100)</label>
+                                <input type="number" class="form-control" id="math_score" name="math_score" min="0" max="100" required placeholder="e.g., 85">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="science_score" class="form-label">Science Score (0-100)</label>
+                                <input type="number" class="form-control" id="science_score" name="science_score" min="0" max="100" required placeholder="e.g., 82">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="language_score" class="form-label">Language Score (0-100)</label>
+                                <input type="number" class="form-control" id="language_score" name="language_score" min="0" max="100" required placeholder="e.g., 78">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="humanities_score" class="form-label">Humanities Score (0-100)</label>
+                                <input type="number" class="form-control" id="humanities_score" name="humanities_score" min="0" max="100" required placeholder="e.g., 80">
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="computer_score" class="form-label">Computer/Tech Score (0-100)</label>
+                                <input type="number" class="form-control" id="computer_score" name="computer_score" min="0" max="100" required placeholder="e.g., 90">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interests -->
+                    <div class="mb-4">
+                        <h3 class="h5 mb-3">
+                            <i class="fas fa-heart me-2"></i>Your Interests
+                        </h3>
+                        <p class="small">Select all that apply</p>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="technology" id="int_technology" name="interests">
+                                    <label class="form-check-label" for="int_technology">Technology & Computers</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="science" id="int_science" name="interests">
+                                    <label class="form-check-label" for="int_science">Science & Research</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="arts" id="int_arts" name="interests">
+                                    <label class="form-check-label" for="int_arts">Arts & Design</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="business" id="int_business" name="interests">
+                                    <label class="form-check-label" for="int_business">Business & Finance</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="healthcare" id="int_healthcare" name="interests">
+                                    <label class="form-check-label" for="int_healthcare">Healthcare & Medicine</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="education" id="int_education" name="interests">
+                                    <label class="form-check-label" for="int_education">Education & Teaching</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="engineering" id="int_engineering" name="interests">
+                                    <label class="form-check-label" for="int_engineering">Engineering</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="law" id="int_law" name="interests">
+                                    <label class="form-check-label" for="int_law">Law & Politics</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="media" id="int_media" name="interests">
+                                    <label class="form-check-label" for="int_media">Media & Communication</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="environment" id="int_environment" name="interests">
+                                    <label class="form-check-label" for="int_environment">Environment & Nature</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="hospitality" id="int_hospitality" name="interests">
+                                    <label class="form-check-label" for="int_hospitality">Hospitality & Tourism</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="social_service" id="int_social_service" name="interests">
+                                    <label class="form-check-label" for="int_social_service">Social Service</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills -->
+                    <div class="mb-4">
+                        <h3 class="h5 mb-3">
+                            <i class="fas fa-tools me-2"></i>Your Skills
+                        </h3>
+                        <p class="small">Select all that apply</p>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="programming" id="skill_programming" name="skills">
+                                    <label class="form-check-label" for="skill_programming">Programming/Coding</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="data_analysis" id="skill_data_analysis" name="skills">
+                                    <label class="form-check-label" for="skill_data_analysis">Data Analysis</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="writing" id="skill_writing" name="skills">
+                                    <label class="form-check-label" for="skill_writing">Writing/Content Creation</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="public_speaking" id="skill_public_speaking" name="skills">
+                                    <label class="form-check-label" for="skill_public_speaking">Public Speaking</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="design" id="skill_design" name="skills">
+                                    <label class="form-check-label" for="skill_design">Design/Creative Skills</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="leadership" id="skill_leadership" name="skills">
+                                    <label class="form-check-label" for="skill_leadership">Leadership</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="problem_solving" id="skill_problem_solving" name="skills">
+                                    <label class="form-check-label" for="skill_problem_solving">Problem Solving</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="research" id="skill_research" name="skills">
+                                    <label class="form-check-label" for="skill_research">Research</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="languages" id="skill_languages" name="skills">
+                                    <label class="form-check-label" for="skill_languages">Foreign Languages</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="teamwork" id="skill_teamwork" name="skills">
+                                    <label class="form-check-label" for="skill_teamwork">Teamwork</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="analysis" id="skill_analysis" name="skills">
+                                    <label class="form-check-label" for="skill_analysis">Critical Thinking/Analysis</label>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="organization" id="skill_organization" name="skills">
+                                    <label class="form-check-label" for="skill_organization">Organization</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="mt-4 text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="fas fa-search me-2"></i>Find My Career Paths
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How it Works Section -->
+<div class="card shadow-sm mb-5">
+    <div class="card-body p-4">
+        <h2 class="text-center mb-4">How It Works</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 border-0 bg-dark">
+                    <div class="card-body text-center">
+                        <div class="display-4 mb-3 text-primary">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3 class="h5">1. Share Your Profile</h3>
+                        <p>Enter your academic performance, interests, skills, and education level.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 bg-dark">
+                    <div class="card-body text-center">
+                        <div class="display-4 mb-3 text-primary">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="h5">2. Analysis</h3>
+                        <p>Our algorithm analyzes your profile against potential career paths and current job market trends.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 border-0 bg-dark">
+                    <div class="card-body text-center">
+                        <div class="display-4 mb-3 text-primary">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <h3 class="h5">3. Get Recommendations</h3>
+                        <p>Receive personalized career path recommendations and suggested upskilling routes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Additional Resources Section -->
+<div class="card shadow-sm mb-5">
+    <div class="card-body p-4">
+        <h2 class="text-center mb-4">Additional Resources</h2>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card h-100 border-0 bg-dark">
+                    <div class="card-body text-center">
+                        <div class="display-4 mb-3 text-primary">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h3 class="h5">Talk to AI Career Assistant</h3>
+                        <p>Get immediate answers to your career questions from our AI assistant.</p>
+                        <a href="{{ url_for('ai_assistant') }}" class="btn btn-outline-primary mt-3">
+                            <i class="fas fa-comments me-2"></i>Start AI Chat
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card h-100 border-0 bg-dark">
+                    <div class="card-body text-center">
+                        <div class="display-4 mb-3 text-primary">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <h3 class="h5">Meet a Career Professional</h3>
+                        <p>Schedule a one-on-one session with a career counselor for personalized guidance.</p>
+                        <a href="{{ url_for('schedule_meeting') }}" class="btn btn-outline-primary mt-3">
+                            <i class="fas fa-calendar-alt me-2"></i>Schedule Meeting
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% endblock %}
