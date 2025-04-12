@@ -5,7 +5,7 @@ import requests
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  # Only for dev (HTTP)
+os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"  
 
 SCOPES = [
     'https://www.googleapis.com/auth/userinfo.profile',
