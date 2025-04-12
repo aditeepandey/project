@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Camera & Mic Control</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 100px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .button-group {
+      margin: 20px 0;
+    }
+
+    button {
+      background-color: #007bff;
+      color: white;
+      padding: 12px 25px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <h1>Face Detection Control Panel</h1>
+
+  <div class="button-group">
+    <button onclick="startCamera()">Start Camera</button>
+    <button onclick="stopCamera()">Stop Camera</button>
+  </div>
+
+  <div class="button-group">
+    <button onclick="startMic()">Start Mic</button>
+    <button onclick="stopMic()">Stop Mic</button>
+  </div>
+
+  <div id="status">Camera and Mic are OFF</div>
+
+  <script>
+    function startCamera() {
+      fetch("/start-camera")
+        .then(res => res.json())
+        .then(data => updateStatus(data.status));
+    }
+
+    function stopCamera() {
+      fetch("/stop-camera")
+        .then(res => res.json())
+        .then(data => updateStatus(data.status));
+    }
+
+    function startMic() {
+      fetch("/start-listening")
+        .then(res => res.json())
+        .then(data => updateStatus(data.response));
+    }
+
+    function stopMic() {
+      fetch("/stop-listening")
+        .then(res => res.json())
+        .then(data => updateStatus(data.response));
+    }
+
+    function updateStatus(message) {
+      document.getElementById("status").innerText = message;
+    }
+  </script>
+</body>
+</html>
